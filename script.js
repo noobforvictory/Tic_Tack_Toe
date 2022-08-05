@@ -10,9 +10,9 @@ const gameBoard = (() =>{
              ['','',''] ];
 
 const setBoard = (x,y,player) =>{
-arr[x][y] = player.sign;
+arr[x][y] = player.sign; 
 if(win(player)){
-console.log('wins')
+console.log('wins');
 }
 }
 
@@ -32,47 +32,60 @@ const resetBoard = () =>{
 }
 
 const win = (player) =>{
-  let x =1;
-for(let i =0; i<3; i++){
-  for(j=0; j<3; j++){
-   if(arr[i][j] === player.sign){
-    console.log(x++)
-   }
-   if(x ===3)return true;
-   x =1;
+  let n =0;
+  for(let i=0; i<3; i++){
+    for(let j =0; j<3; j++){
+      if(arr[i][j] === player.sign){
+        n++;
+      }
+    }
+    if(n === 3){
+      return true
+    }else{
+      n =0;
+    }
   }
-}
- x = 1;
-for(let i =0; i<3; i++){
-  for(j=0; j<3; j++){
-   if(arr[j][i] === player.sign){
-    x++;
-   }
-   if(x ===3)return true;
-   x =1;
+ 
+
+  n=0;
+  for(let i=0; i<3; i++){
+    for(let j =0; j<3; j++){
+      if(arr[j][i] === player.sign){
+        n++;
+      }
+    }
+    if(n === 3){
+      return true
+    }else{
+      n =0;
+    }
   }
-}
+ 
 
-x=1;
-for(let i=j=0; i<3 && j<3;j++, i++){
- if(arr[i][j] === player.sign){
-  x++;
- }
-   if(x === 3){
+  n = 0;
+  for(let i =j =0; i<3 && j<3; i++, j++){
+    if(arr[i][j] === player.sign){
+      n++;
+    }
+  }
+  if(n === 3){
     return true;
-   }
-}
+  }
 
-x=1;
-for(let i=j=0; i<3 && j<3;j++, i++){
- if(arr[i][2-j] === player.sign){
-  x++;
- }
-   if(x === 3){
+ 
+  n =0;
+
+  for(let i =j =0; i<3 && j<3; i++, j++){
+    if(arr[i][2-j] === player.sign){
+      n++;
+    }
+  }
+  if(n === 3){
     return true;
-   }
-}
-x=1;
+  }
+  
+  n =0;
+
 return false;
 }
 
@@ -87,8 +100,8 @@ return {setBoard, resetBoard, draw,win};
 const player1 = player('x');
 const player2 = player('o');
 gameBoard.setBoard(0,0,player1);
-gameBoard.setBoard(0,1,player1);
-gameBoard.setBoard(0,2,player1);
+gameBoard.setBoard(1,1,player1);
+gameBoard.setBoard(2,2,player1);
 
 
 
